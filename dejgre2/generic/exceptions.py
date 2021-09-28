@@ -1,0 +1,2 @@
+def GameLendException(Exception):
+    pass
