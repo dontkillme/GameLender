@@ -2,6 +2,7 @@ from rest_framework import serializers
 from lend_app.models import Person, GameLend
 from magazine.models import BoardGame
 
+
 class PersonSerializer(serializers.ModelSerializer):
     class Meta:
         model = Person
