@@ -17,9 +17,18 @@ from django.contrib import admin
 from django.urls import path, include
 from magazine.urls import urlpatterns as magazine_urls
 from lend_app.urls import urlpatterns as lend_app_urls
+from generic.urls import urlpatterns as generic_urls
+from rest_framework.authtoken.views import ObtainAuthToken
+
+
+class MyAuth(ObtainAuthToken):
+    authentication_classes = []
+
 
 urlpatterns = [
+    path('auth/', MyAuth.as_view()),
     path('admin/', admin.site.urls),
     path('magazine/', include(magazine_urls)),
     path('lend/', include(lend_app_urls)),
+    path('', include(generic_urls)),
 ]

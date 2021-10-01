@@ -3,10 +3,11 @@ from django.http import JsonResponse
 from rest_framework.viewsets import mixins, GenericViewSet
 from rest_framework.decorators import action
 
-from lend_app.models import GameLend, LendInformation
+from lend_app.models import GameLend
 from lend_app.serializers import GameLendSerializer
 from magazine.models import BoardGame
 from generic.exceptions import GameLendException
+from rest_framework.authentication import TokenAuthentication
 
 
 class LendGameEndpoint(mixins.RetrieveModelMixin,
@@ -15,7 +16,7 @@ class LendGameEndpoint(mixins.RetrieveModelMixin,
                        GenericViewSet):
     serializer_class = GameLendSerializer
     queryset = GameLend.objects.all()
-    #authorization
+    authentication_classes = (TokenAuthentication,)
 
     @action(detail=False, methods=['post'])
     def lend_game(self, request):

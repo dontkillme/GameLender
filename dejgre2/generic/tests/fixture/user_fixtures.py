@@ -3,6 +3,7 @@ from generic.tests.factory.user_factory import UserFactory
 from rest_framework.authtoken.models import Token
 from rest_framework.test import APIClient
 
+
 @pytest.fixture(name="regular_user")
 def create_regular_user():
     return UserFactory.create()
