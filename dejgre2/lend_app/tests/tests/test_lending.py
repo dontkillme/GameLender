@@ -2,7 +2,7 @@ import pytest
 import json
 from magazine.tests.fixtures.boardgame_fixture import create_boardgame
 from generic.tests.fixture.user_fixtures import create_apiclient_with_token, create_regular_user
-from lend_app.tests.fixtures.gamelend_fixture import create_gamelend
+from lend_app.tests.fixtures.gamelend_fixture import create_gamelend, create_returned_gamelend
 from lend_app.models import LendInformation
 
 
@@ -40,4 +40,10 @@ def test_lend_game_should_fail_if_no_more_games(apiclient_with_token, boardgame,
     assert resp.content == b'{"error": "No more games available"}'
 
 
-
+@pytest.mark.django_db
+def test_lend_game_endpoint_should_return_lend_information(apiclient_with_token, returned_gamelend):
+    resp = apiclient_with_token.get(f"/lend/game/{returned_gamelend.id}/")
+    resp_json = resp.json()
+    assert resp.status_code == 200
+    assert len(resp_json["lend_info"]) == 2
+    assert resp_json["lend_info"][0]["action"] == 0

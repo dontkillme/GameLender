@@ -1,6 +1,6 @@
 import pytest
 import json
-from generic.tests.fixture.user_fixtures import create_regular_user
+from generic.tests.fixture.user_fixtures import create_regular_user, create_apiclient_with_token
 from rest_framework.test import APIClient
 
 
@@ -16,4 +16,16 @@ def test_user_login_and_logout(regular_user):
     result = client.get("/logout/")
     assert result.status_code == 200
 
+
+@pytest.mark.django_db
+def test_check_ping_on_auth_request_should_return_success(apiclient_with_token):
+    result = apiclient_with_token.get("/ping/")
+    assert result.status_code == 200
+
+
+@pytest.mark.django_db
+def test_check_ping_on_not_auth_request_should_fail():
+    client = APIClient()
+    result = client.get("/ping/")
+    assert result.status_code == 401
 
