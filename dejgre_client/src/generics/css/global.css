@@ -1,4 +1,17 @@
 body {
-  color: rgb(51, 23, 23);
-  padding: 0px;
+  background: #e1ede7;
+  margin: 0px;
+}
+
+.title-box {
+  padding: 10px;
+  border-bottom: 1px solid #bfbfbf;
+  background: #7ca777;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+
+.title-box span {
+  font-size: 20pt;
+  font-family: monospace;
 }

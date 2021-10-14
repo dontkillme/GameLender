@@ -1,14 +1,23 @@
 import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
-
-import Backend from 'i18next-http-backend';
 import LanguageDetector from 'i18next-browser-languagedetector';
+import loginTranslationsEn from "./apps/auth/translations/en/login.json";
+import loginTranslationsPl from "./apps/auth/translations/pl/login.json";
 
 
-i18n.use(Backend)
+const resources = {
+  en: {
+    login: loginTranslationsEn
+  },
+  "pl-PL": {
+    login: loginTranslationsPl
+  }
+}
+
+i18n.use(initReactI18next)
   .use(LanguageDetector)
-  .use(initReactI18next)
   .init({
+    resources,
     fallbackLng: 'en',
     debug: true,
     interpolation: {

@@ -1,31 +1,19 @@
 //I will rename this later
-import React, { useEffect } from "react";
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route
-} from "react-router-dom";
+import React, { useEffect, useState } from "react";
 import LoginView from "./apps/auth/loginView";
 import axiosRequests from "./generics/axiosShortcuts";
+import Dashboard from "./apps/dashboards/core/dashboard";
 
 export default function App() {
+  const [isLogged, setIsLogged] = useState(false);
 
   useEffect(() => {
-    if (axiosRequests.checkForToken()) {
-      axiosRequests.get("/ping/");
-    }
+    handleChangeIsLogged(axiosRequests.checkForToken());
   }, []);
 
-  return (
-    <Router>
-      <Switch>
-          <Route exact path="/">
-            <LoginView />
-          </Route>
-          <Route path="/dashboard">
-            <div> JEEEEJ </div>
-          </Route>
-        </Switch>
-    </Router>
-  )
+  const handleChangeIsLogged = (value) => {
+    setIsLogged(value);
+  }
+
+  return (isLogged ? <Dashboard loginRefresh={handleChangeIsLogged}/> : <LoginView loginRefresh={handleChangeIsLogged}/>)
 }
