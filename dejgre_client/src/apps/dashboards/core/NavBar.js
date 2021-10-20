@@ -9,6 +9,7 @@ import Menu from '@mui/material/Menu';
 import { withRouter } from 'react-router';
 import axiosRequests from "../../../generics/axiosShortcuts";
 import { TitleBar } from "../../../generics/colors";
+import { Link } from "react-router-dom"
 
 class NavBar extends React.Component {
   state = {
@@ -40,6 +41,7 @@ class NavBar extends React.Component {
 
     return (
       <AppBar position="sticky" style={{ background: TitleBar }}>
+        <Link to="/boardgames">Board games</Link>
         <Toolbar variant="dense">
           <IconButton
             size="large"

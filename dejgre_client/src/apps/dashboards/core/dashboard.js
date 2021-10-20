@@ -1,11 +1,12 @@
 import React from "react";
 import {
-  BrowserRouter as Router,
+  Router,
   Switch,
   Route
 } from "react-router-dom";
 import axiosRequests from "../../../generics/axiosShortcuts";
 import NavBar from "./NavBar";
+import BoardGameView from "../../boardgames/BoardGameView";
 import history from "../../../generics/history";
 
 export default class Dashboard extends React.Component {
@@ -24,6 +25,9 @@ export default class Dashboard extends React.Component {
           </Route>
           <Route path="/profile">
             <div> profil </div>
+          </Route>
+          <Route path="/boardgames">
+            <BoardGameView />
           </Route>
         </Switch>
     </Router>
