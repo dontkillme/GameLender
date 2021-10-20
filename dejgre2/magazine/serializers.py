@@ -16,7 +16,7 @@ class GameTagsSerializers(serializers.ModelSerializer):
 
 class BoardGameSerializers(serializers.ModelSerializer):
     tags = GameTagsSerializers(many=True, required=False)
-    genre = GameGenreSerializers(required=False)
+    genre = GameGenreSerializers(required=False, allow_null=True)
     lended = serializers.SerializerMethodField()
 
     def get_lended(self, obj):

@@ -1,0 +1,14 @@
+{
+  "boardGamesTable": {
+    "name": "Name",
+    "code": "Code",
+    "fromAge": "From age",
+    "toAge": "To age",
+    "fromPlayers": "From players",
+    "toPlayers": "To players",
+    "genre": "Genre",
+    "quantity": "Quantity",
+    "availableQuantity": "Available quantity",
+    "gameTableTitle": "Board game table"
+  }
+}

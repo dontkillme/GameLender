@@ -31,8 +31,8 @@ export function getBoardGames() {
     dispatch(beginRequest("boardGames"));
     return axiosRequests.get(
       '/magazine/boardgame/', 
-      (respData) => {
-        dispatch(getBoardGamesData(respData));
+      ({data}) => {
+        dispatch(getBoardGamesData(data));
         dispatch(finishRequest("boardGames"));
       },
       (error) => {
@@ -48,8 +48,8 @@ export function postBoardGames(data) {
     return axiosRequests.post(
       '/magazine/boardgame/',
       data,
-      (respData) => {
-        dispatch(postBoardGamesData(respData));
+      ({data}) => {
+        dispatch(addBoardGamesData(data));
         dispatch(finishRequest("boardGames"));
       },
       (error) => {
@@ -62,11 +62,13 @@ export function postBoardGames(data) {
 export function putBoardGames(data) {
   return (dispatch) => {
     dispatch(beginRequest("boardGames"));
+    const tmpData = {...data};
+    delete tmpData.tags;
     return axiosRequests.put(
       `/magazine/boardgame/${data.id}/`,
-      data,
-      (respData) => {
-        dispatch(putBoardGamesData(respData));
+      tmpData,
+      ({data}) => {
+        dispatch(editBoardGamesData(data));
         dispatch(finishRequest("boardGames"));
       },
       (error) => {
@@ -76,13 +78,13 @@ export function putBoardGames(data) {
   }
 }
 
-export function removeBoardGames(data) {
+export function deleteBoardGames(id) {
   return (dispatch) => {
     dispatch(beginRequest("boardGames"));
     return axiosRequests.delete(
-      `/magazine/boardgame/${data.id}/`,
+      `/magazine/boardgame/${id}/`,
       (respData) => {
-        dispatch(removeBoardGamesData(data.id));
+        dispatch(removeBoardGamesData(id));
         dispatch(finishRequest("boardGames"));
       },
       (error) => {

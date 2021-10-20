@@ -26,7 +26,7 @@ function boardGames(state = [], action) {
     }
     case REMOVE_BOARDGAMES: {
       const newState = [ ...state ];
-      const idx = newState.findIndex(item => item.id === action.data.id);
+      const idx = newState.findIndex(item => item.id === action.id);
       if (idx === -1) {
         return newState;
       }
