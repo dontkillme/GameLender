@@ -41,8 +41,9 @@ class NavBar extends React.Component {
 
     return (
       <AppBar position="sticky" style={{ background: TitleBar }}>
-        <Link to="/boardgames">Board games</Link>
+        
         <Toolbar variant="dense">
+          <Link to="/boardgames" className="nav-link">Board games</Link>
           <IconButton
             size="large"
             aria-label="account of current user"
@@ -50,6 +51,7 @@ class NavBar extends React.Component {
             aria-haspopup="true"
             onClick={this.onClickMenu}
             color="inherit"
+            style={{marginLeft: "auto"}}
           >
             <AccountCircle />
           </IconButton>

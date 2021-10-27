@@ -38,19 +38,25 @@ function boardGames(state = [], action) {
   }
 }
 
-function genre(state = {}, action) {
+function genre(state = [], action) {
   switch(action.type) {
     case GET_GENRE:
       return action.data;
-    case ADD_GENRE: 
-    case EDIT_GENRE: {
-      const newState = {...state};
-      newState[action.data.id] = action.data;
+    case ADD_GENRE: {
+      const newState = [...state];
+      newState.push(action.data);
       return newState;
     }
+    case EDIT_GENRE: 
     case DELETE_GENRE: {
-      const newState = {...state};
-      delete newState[action.id];
+      const newState = [...state];
+      const idx = newState.findIndex((item) => item.id === action.data.id)
+      if (action.type === EDIT_GENRE) {
+        newState[idx] = action.data;
+      } else if (action.type === DELETE_GENRE) {
+        newState.splice(idx, 1);
+      }
+      newState[action.data.id] = action.data;
       return newState;
     }
     default: 

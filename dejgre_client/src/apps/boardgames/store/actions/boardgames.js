@@ -60,8 +60,6 @@ export function postBoardGames(data) {
 }
 
 export function putBoardGames(data) {
-  data.genre_id = data.genre;
-  delete data.genre;
   return (dispatch) => {
     dispatch(beginRequest("boardGames"));
     const tmpData = {...data};

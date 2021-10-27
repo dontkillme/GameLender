@@ -8,7 +8,7 @@ import { connect } from "react-redux";
 class GenreTable extends React.Component {
 
   componentDidMount() {
-    if (!Object.keys(this.props.genre).length) {
+    if (!this.props.genre.length) {
       this.props.getGenre();
     }
   }
@@ -18,8 +18,7 @@ class GenreTable extends React.Component {
 
     return (
       <MaterialTableTrans
-        title={t("genre.tableTitle")}
-        data={Object.values(this.props.genre)}
+        data={this.props.genre}
         columns={[
           {field: "id", title: "#", editable: false},
           {field: "name", title: t("genre.name")}

@@ -32,6 +32,7 @@ export default class MaterialTableTrans extends React.Component {
         options={{
           actionsColumnIndex: -1,
           filtering: true,
+          showTitle: this.props.title ?? false
         }}
         editable={{
           onRowAdd: this.onRowAdd,

@@ -12,7 +12,10 @@ class BoardGameTable extends React.Component {
       this.props.getBoardGames();
     if (!Object.keys(this.props.genre).length)
       this.props.getGenre();
-      
+  }
+
+  createGenreLookup() {
+    return Object.fromEntries(this.props.genre.map(item => [item.id, item.name]));
   }
   
   render() {
@@ -29,15 +32,11 @@ class BoardGameTable extends React.Component {
           {field: "to_age", title: t("boardGamesTable.toAge"), type: "numeric"},
           {field: "from_players", title: t("boardGamesTable.fromPlayers"), type: "numeric"},
           {field: "to_players", title: t("boardGamesTable.toPlayers"), type: "numeric"},
-          {field: "genre", title: t("boardGamesTable.genre"), lookup: this.props.genre}, // will change to select
+          {field: "genre", title: t("boardGamesTable.genre"), lookup: this.createGenreLookup()},
           {field: "quantity", title: t("boardGamesTable.quantity"), type: "numeric"},
           {field: "available", title: t("boardGamesTable.availableQuantity"), editable: "never"},
         ]}
         data={this.props.games}
-        options={{
-          actionsColumnIndex: -1,
-          filtering: true,
-        }}
         putAction={this.props.putBoardGames}
         postAction={this.props.postBoardGames}
         deleteAction={this.props.deleteBoardGames}
@@ -47,11 +46,10 @@ class BoardGameTable extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-  const genre = Object.fromEntries(Object.values(state.boardGames.genre).map((item) => [item.id, item.name]));
   return {
     games: state.boardGames.boardGames,
     gameLoading: state.requests.boardGames,
-    genre
+    genre: state.boardGames.genre
   }
 }
 
