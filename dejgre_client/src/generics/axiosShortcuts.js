@@ -17,6 +17,7 @@ const axiosRequests = {
     .catch((error) => {
       if (error.response?.status === 401) {
         axiosRequests.removeAuthToken();
+        location.pathname = "";
       }
       fail(error);
     });

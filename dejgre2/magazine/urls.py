@@ -8,8 +8,8 @@ from rest_framework.routers import SimpleRouter
 
 router = SimpleRouter()
 router.register(r'boardgame', register_endpoints(BoardGame, BoardGameSerializers))
-router.register(r'gamegenre', register_endpoints(BoardGame, BoardGameSerializers))
-router.register(r'gametags', register_endpoints(BoardGame, BoardGameSerializers))
+router.register(r'gamegenre', register_endpoints(GameGenre, GameGenreSerializers))
+router.register(r'gametags', register_endpoints(GameTags, GameTagsSerializers))
 
 
 urlpatterns = router.urls

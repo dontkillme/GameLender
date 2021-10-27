@@ -10,5 +10,13 @@
     "quantity": "Quantity",
     "availableQuantity": "Available quantity",
     "gameTableTitle": "Board game table"
+  },
+  "genre": {
+    "name": "name",
+    "tableTitle": "Game genre table"
+  },
+  "main": {
+    "boardGames": "Board games",
+    "genre": "Genre"
   }
 }
