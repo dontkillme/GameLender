@@ -5,6 +5,7 @@ export const GET_BOARDGAMES = "GET_BOARDGAMES";
 export const ADD_BOARDGAMES = "ADD_BOARDGAMES";
 export const EDIT_BOARDGAMES = "EDIT_BOARDGAMES";
 export const REMOVE_BOARDGAMES = "REMOVE_BOARDGAMES";
+export const CHANGE_BOARDGAMES = "CHANGE_BOARDGAMES";
 
 export const getBoardGamesData = (data) => ({
   type: GET_BOARDGAMES,
@@ -23,6 +24,12 @@ export const editBoardGamesData = (data) => ({
 
 export const removeBoardGamesData = (id) => ({
   type: REMOVE_BOARDGAMES,
+  id
+});
+
+export const changeBoardGamesAvailable = (id, count) => ({
+  type: CHANGE_BOARDGAMES,
+  count,
   id
 });
 
@@ -91,5 +98,22 @@ export function deleteBoardGames(id) {
         dispatch(failRequest("boardGames"));
       }
     );
+  }
+}
+
+export function lendBoardGame(data) {
+  return (dispatch) => {
+    dispatch(beginRequest("lendGame"))
+    return axiosRequests.post(
+      "/lend/game/lend_game/",
+      data,
+      ({data}) => {
+        dispatch(changeBoardGamesAvailable(data.game))
+        dispatch(finishRequest("lendGame"));
+      },
+      (error) => {
+        dispatch(failRequest("lendGame"));
+      }
+    )
   }
 }

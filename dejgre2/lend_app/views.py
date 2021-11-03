@@ -17,6 +17,7 @@ class LendGameEndpoint(mixins.RetrieveModelMixin,
     serializer_class = GameLendSerializer
     queryset = GameLend.objects.all()
     authentication_classes = (TokenAuthentication,)
+    filterset_fields = [f.name for f in GameLend._meta.get_fields()]
 
     @action(detail=False, methods=['post'])
     def lend_game(self, request):
@@ -34,4 +35,4 @@ class LendGameEndpoint(mixins.RetrieveModelMixin,
     def return_game(self, request, pk=None):
         lend_obj = GameLend.objects.get(pk=pk)
         lend_obj.end_lend(request.user)
-        return JsonResponse({"success": True, "id": pk})
+        return JsonResponse(GameLendSerializer(lend_obj).data, safe=False)

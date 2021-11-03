@@ -15,8 +15,19 @@
     "name": "name",
     "tableTitle": "Game genre table"
   },
+  "lendModal": {
+    "title": "Lend boardgame",
+    "lend": "Lend",
+    "description": "lend this game"
+  },
   "main": {
     "boardGames": "Board games",
     "genre": "Genre"
+  },
+  "lendInfo": {
+    "lendStart": "Started at",
+    "person": "Lended to",
+    "note": "Note",
+    "title": "Lend information of {{game}}"
   }
 }

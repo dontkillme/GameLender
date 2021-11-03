@@ -2,7 +2,15 @@ import axios from "axios";
 import Toast from "./toast";
 
 function axiosFail(respError) {
-  new Toast({message: respError, type: "danger"});
+  new Toast({message: respError?.response?.data?.error ?? respError, type: "danger"});
+}
+
+function basicErrorHandling(error) {
+  if (error.response?.status === 401) {
+    axiosRequests.removeAuthToken();
+    location.pathname = "";
+  }
+  return Promise.reject(error);
 }
 
 function emptySuccessCallback() {}
@@ -14,13 +22,7 @@ const axiosRequests = {
       url: url,
     })
     .then(success)
-    .catch((error) => {
-      if (error.response?.status === 401) {
-        axiosRequests.removeAuthToken();
-        location.pathname = "";
-      }
-      fail(error);
-    });
+    .catch(basicErrorHandling).catch(fail);
   },
   post: (url, data, success = emptySuccessCallback, fail = axiosFail) => {
     return axios({
@@ -29,7 +31,7 @@ const axiosRequests = {
       data
     })
     .then(success)
-    .catch(fail);
+    .catch(basicErrorHandling).catch(fail);
   },
   put: (url, data, success = emptySuccessCallback, fail = axiosFail) => {
     return axios({
@@ -38,7 +40,7 @@ const axiosRequests = {
       data
     })
     .then(success)
-    .catch(fail);
+    .catch(basicErrorHandling).catch(fail);
   },
   delete: (url, success = emptySuccessCallback, fail = axiosFail) => {
     return axios({
@@ -46,7 +48,7 @@ const axiosRequests = {
       url: url
     })
     .then(success)
-    .catch(fail);
+    .catch(basicErrorHandling).catch(fail);
   },
   checkForToken: () => {
     const token = localStorage.getItem("token");
