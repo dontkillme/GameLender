@@ -16,11 +16,11 @@ class GameTagsSerializers(serializers.ModelSerializer):
 
 class BoardGameSerializers(serializers.ModelSerializer):
     tags = GameTagsSerializers(many=True, required=False)
-    genre = GameGenreSerializers(required=False)
-    lended = serializers.SerializerMethodField()
+    genre = serializers.SlugRelatedField(queryset=GameGenre.objects.all(), slug_field="id")
+    available = serializers.SerializerMethodField()
 
-    def get_lended(self, obj):
-        return obj.lended_game.filter(lend_end__isnull=True).count()
+    def get_available(self, obj):
+        return obj.quantity - obj.lended_game.filter(lend_end__isnull=True).count()
 
     class Meta:
         model = BoardGame

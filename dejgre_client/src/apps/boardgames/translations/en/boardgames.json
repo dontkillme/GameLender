@@ -1,0 +1,33 @@
+{
+  "boardGamesTable": {
+    "name": "Name",
+    "code": "Code",
+    "fromAge": "From age",
+    "toAge": "To age",
+    "fromPlayers": "From players",
+    "toPlayers": "To players",
+    "genre": "Genre",
+    "quantity": "Quantity",
+    "availableQuantity": "Available quantity",
+    "gameTableTitle": "Board game table"
+  },
+  "genre": {
+    "name": "name",
+    "tableTitle": "Game genre table"
+  },
+  "lendModal": {
+    "title": "Lend boardgame",
+    "lend": "Lend",
+    "description": "lend this game"
+  },
+  "main": {
+    "boardGames": "Board games",
+    "genre": "Genre"
+  },
+  "lendInfo": {
+    "lendStart": "Started at",
+    "person": "Lended to",
+    "note": "Note",
+    "title": "Lend information of {{game}}"
+  }
+}

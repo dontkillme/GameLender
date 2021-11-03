@@ -20,7 +20,17 @@ class UserView(viewsets.ReadOnlyModelViewSet):
 
 
 class Logout(ObtainAuthToken):
+    permission_classes = [IsAuthenticated]
 
     def get(self, request):
         request.user.auth_token.delete()
         return JsonResponse({"logout": True}, safe=False)
+
+
+class PingView(ObtainAuthToken):
+    permission_classes = [IsAuthenticated]
+    http_method_names = ["get"]
+
+    def get(self, request):
+        return JsonResponse({"success": True}, safe=False)
+

@@ -19,7 +19,7 @@ class LendInformation(models.Model):
     )
 
     user = models.ForeignKey(User, on_delete=models.DO_NOTHING)
-    lend = models.ForeignKey("GameLend", on_delete=models.DO_NOTHING)
+    lend = models.ForeignKey("GameLend", on_delete=models.DO_NOTHING, related_name="lend_info")
     action = models.IntegerField(default=LENDED, choices=ACTIONS)
 
 
