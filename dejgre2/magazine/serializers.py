@@ -16,7 +16,7 @@ class GameTagsSerializers(serializers.ModelSerializer):
 
 class BoardGameSerializers(serializers.ModelSerializer):
     tags = GameTagsSerializers(many=True, required=False)
-    genre = serializers.SlugRelatedField(queryset=GameGenre.objects.all(), slug_field="id")
+    genre = serializers.SlugRelatedField(queryset=GameGenre.objects.all(), slug_field="id", required=False)
     available = serializers.SerializerMethodField()
 
     def get_available(self, obj):

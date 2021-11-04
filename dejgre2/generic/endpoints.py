@@ -7,5 +7,6 @@ def register_endpoints(model, serializer):
         queryset = model.objects.all()
         serializer_class = serializer
         authentication_classes = (TokenAuthentication,)
+        filterset_fields = [f.name for f in model._meta.get_fields()]
 
     return MainHandler
