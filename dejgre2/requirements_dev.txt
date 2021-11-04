@@ -1,0 +1,8 @@
+pytest==6.2.5
+pytest-django==4.4.0
+pytest-env==0.6.2
+pytest-factory==0.0.1.dev0
+pytest-lazy-fixture==0.6.3
+pytest-factoryboy==2.1.0
+factory-boy==3.2.0
+Faker==8.14.0

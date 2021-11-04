@@ -11,6 +11,7 @@ class BoardGame(models.Model):
 	genre = models.ForeignKey("GameGenre", on_delete=models.SET_NULL, blank=True, null=True)
 	tags = models.ManyToManyField("GameTags", blank=True)
 	quantity = models.IntegerField(default=1)
+	producer = models.ForeignKey("Producer", on_delete=models.CASCADE, blank=True, null=True)
 
 	def can_lend(self):
 		return self.lended_game.filter(lend_end__isnull=True).count() < self.quantity
@@ -21,4 +22,8 @@ class GameGenre(models.Model):
 
 
 class GameTags(models.Model):
+	name = models.CharField(max_length=255)
+
+
+class Producer(models.Model):
 	name = models.CharField(max_length=255)
