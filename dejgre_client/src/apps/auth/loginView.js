@@ -59,6 +59,7 @@ export default function LoginView({ loginRefresh }) {
             <Button 
               variant="contained"
               onClick={submitData}
+              id="login-submit"
             > {t("basic.submit")}
             </Button>
           </div>
