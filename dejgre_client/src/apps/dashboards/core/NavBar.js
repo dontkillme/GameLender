@@ -43,7 +43,7 @@ class NavBar extends React.Component {
       <AppBar position="sticky" style={{ background: TitleBar }}>
         
         <Toolbar variant="dense">
-          <Link to="/boardgames" className="nav-link">Board games</Link>
+          <Link to="/boardgames" className="nav-link" id="boardGameLink">Board games</Link>
           <IconButton
             size="large"
             aria-label="account of current user"
